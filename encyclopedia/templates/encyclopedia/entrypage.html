@@ -5,13 +5,13 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ entrytitle }}</h1>
     
-    {% if pages == None %}
-    <p>Requested Page Not Found</p>
+    {% if pages != None %}
+        {{ pages|safe }}
+        <a class="btn btn-dark" href="{% url 'encyclopedia:edit' entrytitle %}">Edit</a>
     {% else %}
-    <p>{{ pages }}</p> 
+        <h1>{{ entrytitle }}</h1>
+        <p>Requested Page Not Found</p> 
     {% endif %} 
 
-    
 {% endblock %}

@@ -7,10 +7,27 @@
 {% block body %}
     <h1>Create New Page</h1>
     
-    <label for="new-page">Review of W3Schools:</label>
+    <form action="{% url 'encyclopedia:new' %}" method="POST">
+        {% csrf_token %}
+        <div class="files">
+            {{ form.pageName.label_tag }}
+            {{ form.pageName }}
+        </div>
+        <div class="files">
+            {{ form.pageContent.label_tag }}
+            {{ form.pageContent }}
+        </div>
 
-    <textarea id="new-page" name="new-page" rows="4" cols="50" autofocus>
-    Enter the text for a new wiki page in markdown language.
-    </textarea> 
-        
+        <div class="right-btn">
+            <button class="btn btn-dark" type="submit">Save</button>    
+        </div>        
+    </form>
+
+    {% if duplicate != "no" %}
+        <div class="files">
+            {{ duplicate }}
+        </div>
+            
+    {% endif %}
+
 {% endblock %}
